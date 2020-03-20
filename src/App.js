@@ -5,28 +5,28 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  //Initial Value
   const [teamMembers, setTeamMembers] = useState([{
     id: 1, 
     name: 'Adan Rodriguez',
     email: 'arodriguez_11@live.com',
     role: 'Full Stack Web Development'
   }]);
+
+  //Format for applying card to new member
+  const addMember = card => {
+    const newCard ={
+      id: Date.now(),
+      name: card.name,
+      email: card.email,
+      role: card.role
+    }
+    setTeamMembers([...teamMembers, newCard]);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <Form addMember={addMember} />
+    <TeamCard teamMembers = {teamMembers} />
     </div>
   );
 }
